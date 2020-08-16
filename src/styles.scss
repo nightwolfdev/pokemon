@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles-override.scss';
+
+.branding img {
+    height: 40px;
+    margin-right: 0.25rem;
+    width: 40px;
+}
+
+.card {
+    &.clickable {
+        &:hover {
+            border-color: var(--dark-red);
+            box-shadow: 0 .15rem 0 0 var(--dark-red);
+
+            .card-header {
+                background: var(--dark-red);
+                color: var(--white);
+            }
+        }
+    }
+
+    img {
+        max-height: 96px;
+    }
+}
+
+.main-container .content-container .fixed-header {
+    display: flex;
+    overflow: hidden;
+    padding: 0;
+
+    .fixed-content-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .fixed-content-header {
+            background: #666;
+            padding: 0.5rem;
+            text-align: center;
+
+            form {
+                display: inline-block;
+                margin: 0;
+                padding: 0;
+
+                input {
+                    background: #fcfcfc;
+                    border: none;
+                    border-radius: 0.15rem;
+                    color: #333;
+                    height: 1.2rem;
+                    margin-right: 0.5rem;
+                    padding: 0 0.5rem;
+                }
+
+                select {
+                    background: #fcfcfc;
+                    border: none;
+                    border-radius: 0.15rem;
+                    color: #333;
+                    height: 1.2rem;
+                    padding: 0 0.5rem;
+                }
+            }
+        }
+
+        .fixed-content-area {
+            flex: 1 1 auto;
+            height: 100%;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+    }
+}

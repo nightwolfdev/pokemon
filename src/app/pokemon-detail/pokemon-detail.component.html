@@ -1,0 +1,81 @@
+<ng-container *ngIf="pokemon$ | async as pokemon; else loading">
+    <div class="card">
+        <div class="card-header">{{ pokemon.name }}</div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Images</div>
+                    <div id="images" class="clr-col-sm-12 clr-col-md-10">
+                        <img *ngIf="pokemon.sprites.back_default" [src]="pokemon.sprites.back_default">
+                        <img *ngIf="pokemon.sprites.front_default" [src]="pokemon.sprites.front_default">
+                        <img *ngIf="pokemon.sprites.back_female" [src]="pokemon.sprites.back_female">
+                        <img *ngIf="pokemon.sprites.front_female" [src]="pokemon.sprites.front_female">
+                        <img *ngIf="pokemon.sprites.back_shiny" [src]="pokemon.sprites.back_shiny">
+                        <img *ngIf="pokemon.sprites.front_shiny" [src]="pokemon.sprites.front_shiny">
+                        <img *ngIf="pokemon.sprites.back_shiny_female" [src]="pokemon.sprites.back_shiny_female">
+                        <img *ngIf="pokemon.sprites.front_shiny_female" [src]="pokemon.sprites.front_shiny_female">
+                    </div>
+                </div>
+            </li> 
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Type</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">
+                        <span *ngFor="let type of pokemon.types" class="label">{{ type.name }}</span>
+                    </div>
+                </div>
+            </li>     
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Abilities</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">
+                        <span *ngFor="let ability of pokemon.abilities" class="label">{{ ability.name }}</span>
+                    </div>
+                </div>
+            </li> 
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Moves</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">
+                        <span *ngFor="let move of pokemon.moves" class="label">{{ move.name }}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Stats</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">
+                        <div *ngFor="let stat of pokemon.stats" class="progress-block">
+                            <label [for]="stat.stat.name">{{ stat.stat.name }}</label>
+                            <div class="progress labeled">
+                                <progress [id]="stat.stat.name" [value]="stat.base_stat" max="255"></progress>
+                                <span>{{ stat.base_stat }}</span>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </li>                                  
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Height</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">{{ pokemon.height }}</div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="clr-row">
+                    <div class="clr-col-sm-12 clr-col-md-2 field-label">Weight</div>
+                    <div class="clr-col-sm-12 clr-col-md-10">{{ pokemon.weight }}</div>
+                </div>
+            </li>               
+        </ul>
+    </div>
+</ng-container>
+<ng-template #loading>
+    <div class="clr-row">
+        <div class="clr-col-12 text-center">
+            <span *ngIf="!pokemonError && !notFound" class="spinner"></span>
+            <h2 *ngIf="notFound">Pokemon Not Found</h2>
+            <button *ngIf="pokemonError" type="button" class="btn btn-danger" (click)="getPokemon()">Reload Pokemon</button>
+        </div>
+    </div>
+</ng-template>

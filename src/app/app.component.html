@@ -1,0 +1,15 @@
+<clr-main-container>
+    <clr-header>
+        <div class="branding">
+            <a class="nav-link" routerLink="/">
+                <img src="../assets/pokeball.png">
+                <span class="title">Pokemon</span>
+            </a>
+        </div>
+    </clr-header>
+    <div class="content-container">
+        <main [ngClass]="{ 'fixed-header': router.url === '/home' }" class="content-area">
+            <router-outlet></router-outlet>
+        </main>
+    </div>
+</clr-main-container>

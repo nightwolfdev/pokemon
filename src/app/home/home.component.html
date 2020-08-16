@@ -1,0 +1,52 @@
+<div class="fixed-content-header">
+    <form>
+        <input autocomplete="off" placeholder="Search" type="search" (input)="pokemonSvc.search($event.target.value)" [value]="pokemonSvc.getCurrentSearch()">
+        <ng-container *ngIf="types$ | async as types">
+            <select (change)="pokemonSvc.changeType($event.target.value)">
+                <option *ngFor="let type of types" [value]="type.name" [attr.selected]="pokemonSvc.getCurrentType() === type.name ? true : null">{{ type.name.toUpperCase() }}</option>
+            </select>
+        </ng-container>
+        <div *ngIf="typeError" class="clr-row">
+            <div class="clr-col-12 text-center">
+                <button type="button" class="btn btn-danger" (click)="getTypes()">Reload Types</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="fixed-content-area">
+    <ng-container *ngIf="pokemonList$ | async as pokemon; else loadingPokemon">
+        <div class="clr-row">
+            <div id="count" class="clr-col-sm-12">
+                <strong>{{ pokemon.length }} {{ pokemonSvc.getCurrentType() }} Pokemon <span *ngIf="pokemonSvc.getCurrentSearch()"> matching {{ pokemonSvc.getCurrentSearch() }}</span></strong>
+            </div>
+        </div>
+        <div *ngIf="pokemon.length > 0; else noPokemon" class="clr-row">
+            <div class="clr-col-sm-12 clr-col-md-2" *ngFor="let entry of pokemon">
+                <div class="card clickable text-center" [routerLink]="['/pokemon', entry.name]">
+                    <div class="card-header">
+                        {{ entry.name }}
+                    </div>
+                    <div class="card-img">
+                        <img #img [src]="entry.image" (error)="img.src = './assets/pokeball.png'">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #noPokemon>
+            <p class="text-center">Sorry, there are no Pokemon.</p>
+        </ng-template>
+    </ng-container>
+    <ng-template #loadingPokemon>
+        <div class="clr-row">
+            <div class="clr-col-12 text-center">
+                <ng-container *ngIf="pokemonListError; then: showPokemonListError; else: loadingPokemonList"></ng-container>
+                <ng-template #showPokemonListError>
+                    <button type="button" class="btn btn-danger" (click)="getPokemonList()">Reload Pokemon</button>
+                </ng-template>
+                <ng-template #loadingPokemonList>
+                    <span class="spinner"></span>
+                </ng-template>
+            </div>
+        </div>  
+    </ng-template>
+</div>

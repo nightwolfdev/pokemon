@@ -1,0 +1,22 @@
+:root {
+
+    // Colors
+    --dark-red: hsl(0, 100%, 27%);
+    --light-red: hsl(0, 100%, 40%);
+    --white: hsl(0, 0%, 98%);
+
+    // Default button
+    --clr-btn-default-color: var(--dark-red);
+    --clr-btn-default-hover-bg-color: var(--dark-red);
+    --clr-btn-default-hover-color: var(--white);
+
+    // Primary button
+    --clr-btn-primary-color: var(--white);
+    --clr-btn-primary-bg-color: var(--dark-red);
+    --clr-btn-primary-border-color: var(--dark-red);
+    --clr-btn-primary-hover-bg-color: var(--light-red);
+
+    // Progress bar
+    --clr-progress-default-color: var(--dark-red);
+
+}
