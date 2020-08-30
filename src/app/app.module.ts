@@ -9,10 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { HomeComponent } from './home/home.component';
 
+import { ImgFallbackDirective } from './directives/img-fallback.directive';
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    ImgFallbackDirective
   ],
   imports: [
     BrowserModule,

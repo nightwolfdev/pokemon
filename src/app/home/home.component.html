@@ -27,7 +27,7 @@
                         {{ entry.name }}
                     </div>
                     <div class="card-img">
-                        <img #img [src]="entry.image" (error)="img.src = './assets/pokeball.png'">
+                        <img [src]="entry.image" appImgFallback>
                     </div>
                 </div>
             </div>
