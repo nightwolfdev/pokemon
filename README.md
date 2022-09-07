@@ -1,6 +1,8 @@
 # Pokemon
 
-Pokemon app using Angular and PokeAPI.
+![Star Wars App](./src/assets/pokemon-app.png)
+
+Pokemon app using Angular, RxJS, Typescript and the PokeAPI.
 
 ## Getting Started
 
